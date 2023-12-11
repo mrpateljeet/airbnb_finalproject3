@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from flask_restful import Api, Resource
 from marshmallow import Schema, fields
-from utils.data_utils import DataUtils
+from data_utils import DataUtils
 
 app = Flask(__name__)
 api = Api(app)

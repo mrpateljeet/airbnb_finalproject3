@@ -4,6 +4,12 @@ from marshmallow import Schema, fields
 from data_utils import DataUtils
 
 app = Flask(__name__)
+airbnb_listings = [
+    {"id": 1, "name": "Cozy Apartment", "price": 100, "neighborhood": "Downtown", "host_id": 123, "room_type": "Entire home/apt"},
+    {"id": 2, "name": "Spacious Condo", "price": 150, "neighborhood": "Suburb", "host_id": 456, "room_type": "Entire home/apt"},
+    # Add more listings as needed
+]
+
 api = Api(app)
 data_utils = DataUtils()
 
@@ -42,3 +48,11 @@ class Listing(Resource):
 # Register resources
 api.add_resource(Listings, "/listings")
 api.add_resource(Listing, "/listing/<int:listing_id>")
+
+
+@app.route('/listings')
+def get_listings():
+    return jsonify(airbnb_listings)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5001)
